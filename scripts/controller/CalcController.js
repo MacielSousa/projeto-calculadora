@@ -10,19 +10,21 @@ class CalcController{
     }
 
     initialize(){
-        
+        this.setDisplayDataTime();
         let interval = setInterval(() =>{
-
-            this.displayDate = this.currentDate.toLocaleDateString(this._locale);
-            this.displayTime = this.currentDate.toLocaleTimeString(this._locale);
-
+            this.setDisplayDataTime();
         }, 1000);
 
-        setTimeout( () => { 
+    }
 
-            clearInterval(interval);
+    setDisplayDataTime(){
 
-        }, 10000);
+        this.displayDate = this.currentDate.toLocaleDateString(this._locale,{
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+        this.displayTime = this.currentDate.toLocaleTimeString(this._locale);
 
     }
 
