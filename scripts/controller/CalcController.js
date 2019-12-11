@@ -28,12 +28,25 @@ class CalcController{
 
     clearAll(){
 
+        this._operation = [];
 
     }
 
     clearEntry(){
 
+        this._operation.pop();
+
     }
+
+
+    addOpration(value){
+
+        this._operation.push(value);
+        console.log( this._operation);
+
+    }
+    
+
     setError(){
         this.displayCalc = "Error";
     }
@@ -65,10 +78,22 @@ class CalcController{
                 
             break;
             
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                this.addOpration(parseInt(value));
+            break;
             default:
+                console.log(value);
                 this.setError();
             break;
-
         }
     }
 
@@ -79,7 +104,7 @@ class CalcController{
             this.addEventListenerAll(btn, 'click drag', e => {
                 let textBtn = btn.className.baseVal.replace("btn-","");
 
-                this.execBtn();
+                this.execBtn(textBtn);
 
             });
 
@@ -88,9 +113,6 @@ class CalcController{
             });
 
         });
-
-
-
     }
 
     setDisplayDataTime(){
